@@ -4,6 +4,8 @@ import pygame
 pygame.init()
 window_width, window_height = 1263, 551
 display_surface = pygame.display.set_mode((window_width, window_height))
+# Changed the title of the window
+pygame.display.set_caption("My_first_pygame")
 running = True
 
 while running:
@@ -18,6 +20,5 @@ while running:
     pygame.display.flip()
     
     
-    pygame.display.set_caption("My_first_pygame")
     
 pygame.quit()
