@@ -18,6 +18,7 @@ x = 100
 # importing an image
 player_surface = pygame.image.load(join("spaceshooter", "images", "player.png")).convert_alpha()
 star_surface = pygame.image.load(join("spaceshooter", "images", "star.png")).convert_alpha()
+player_rect = player_surface.get_frect(center = (window_width / 2, window_height / 2))
 
 # Generate random star position
 num_stars = 20
@@ -31,15 +32,14 @@ while running:
     
     # draw game
     # fill the window with color
-    display_surface.fill("darkgray")
+    display_surface.fill("black")
     
     # Draw the stars
     for star_position in stars:
         display_surface.blit(star_surface, star_position)
     
     # player
-    x += 0.1
-    display_surface.blit(player_surface, (x, 150))
+    display_surface.blit(player_surface, (player_rect))
 
     pygame.display.update()
     
