@@ -1,4 +1,6 @@
 import pygame
+from os.path import join
+from random import randint
 
 # General setup
 pygame.init()
@@ -14,7 +16,12 @@ surf.fill("orange")
 x = 100
 
 # importing an image
-player_surface = pygame.image.load('images/player.png')
+player_surface = pygame.image.load(join("spaceshooter", "images", "player.png")).convert_alpha()
+star_surface = pygame.image.load(join("spaceshooter", "images", "star.png")).convert_alpha()
+
+# Generate random star position
+num_stars = 20
+stars = [(randint(0, window_width), randint(0, window_height)) for i in range(num_stars)]
 
 while running:
     # event loop
@@ -23,10 +30,17 @@ while running:
             running = False
     
     # draw game
-    # fill the window with the red color
+    # fill the window with color
     display_surface.fill("darkgray")
+    
+    # Draw the stars
+    for star_position in stars:
+        display_surface.blit(star_surface, star_position)
+    
+    # player
     x += 0.1
-    display_surface.blit(surf, (x, 150))
+    display_surface.blit(player_surface, (x, 150))
+
     pygame.display.update()
     
     
