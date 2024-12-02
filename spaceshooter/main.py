@@ -22,7 +22,7 @@ player_surface = pygame.image.load(join("spaceshooter", "images", "player.png"))
 star_surface = pygame.image.load(join("spaceshooter", "images", "star.png")).convert_alpha()
 #---> player position
 player_rect = player_surface.get_frect(center = (window_width / 2, window_height / 2))
-#----> player movement
+#----> player direction
 player_direction = -1
 #--> import star
 star_surface = pygame.image.load(join("spaceshooter", "images", "star.png")).convert_alpha()
@@ -34,6 +34,8 @@ meteor_rect = player_surface.get_frect(center = (window_width / 2, window_height
 laser_surface = pygame.image.load(join("spaceshooter", "images", "laser.png")).convert_alpha()
 #---> laser position
 laser_rect = laser_surface.get_frect(bottomleft = (20, window_height - 20))
+
+
 
 # Generate random star position
 num_stars = 20
@@ -67,5 +69,5 @@ while running:
     pygame.display.update()
     
     
-    
+    #1:02:13 Youtube
 pygame.quit()
