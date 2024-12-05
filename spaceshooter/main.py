@@ -9,11 +9,13 @@ display_surface = pygame.display.set_mode((window_width, window_height))
 # Changed the title of the window
 pygame.display.set_caption("My_first_pygame")
 running = True
+clock = pygame.tine.Clock()
 
 # plain surface
 surf = pygame.Surface((100, 200))
 surf.fill("orange")
 x = 100
+
 
 # imports
 #--> import player
@@ -23,7 +25,7 @@ star_surface = pygame.image.load(join("spaceshooter", "images", "star.png")).con
 #---> player position
 player_rect = player_surface.get_frect(center = (window_width / 2, window_height / 2))
 #----> player direction
-player_direction = -1
+player_direction = pygame.math.Vector2(20, -10)
 #--> import star
 star_surface = pygame.image.load(join("spaceshooter", "images", "star.png")).convert_alpha()
 #--> import meteor
@@ -42,6 +44,7 @@ num_stars = 20
 stars = [(randint(0, window_width), randint(0, window_height)) for i in range(num_stars)]
 
 while running:
+    clock.tick(10)
     # event loop
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -61,13 +64,12 @@ while running:
     display_surface.blit(laser_surface, (laser_rect))
     # player
     display_surface.blit(player_surface, (player_rect))
+    
     # player movement
-    player_rect.x += player_direction * 0.4
-    if player_rect.right > window_width or player_rect.left < 0:
-        player_direction *= -1
+    player_rect.center += player_direction
+    display_surface.blit(player_surface, player_rect.topleft)
         
     pygame.display.update()
     
     
-    #1:02:13 Youtube
 pygame.quit()
