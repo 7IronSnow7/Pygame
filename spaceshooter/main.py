@@ -25,7 +25,7 @@ star_surface = pygame.image.load(join("spaceshooter", "images", "star.png")).con
 #---> player position
 player_rect = player_surface.get_frect(center = (window_width / 2, window_height / 2))
 #----> player direction
-player_direction = pygame.math.Vector2(1, 0)
+player_direction = pygame.math.Vector2(1, 1)
 player_speed = 300
 #--> import star
 star_surface = pygame.image.load(join("spaceshooter", "images", "star.png")).convert_alpha()
@@ -46,11 +46,17 @@ stars = [(randint(0, window_width), randint(0, window_height)) for i in range(nu
 
 while running:
     dt = clock.tick() / 1000
-    print(clock.get_fps())
     # event loop
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        # if event.type == pygame.KEYDOWN:
+        #     print(1)
+        # if event.type == pygame.MOUSEMOTION:
+        #     player_rect.center = event.pos
+        
+    # input
+    print(pygame.mouse.get_pressed())
     
     # draw game
     # fill the window with color
@@ -64,9 +70,6 @@ while running:
     display_surface.blit(meteor_surface, (meteor_rect))
     # laser
     display_surface.blit(laser_surface, (laser_rect))
- 
-    # player movement
-    player_rect.center += player_direction * player_speed * dt
     display_surface.blit(player_surface, player_rect)
         
     pygame.display.update()
