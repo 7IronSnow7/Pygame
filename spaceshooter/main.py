@@ -22,7 +22,7 @@ class Player(pygame.sprite.Sprite):
                 self.can_shoot = True
                 
         
-    def update(self):
+    def update(self, dt):
         keys = pygame.key.get_pressed()
         self.direction.x = int(keys[pygame.K_RIGHT])  - int(keys[pygame.K_LEFT])
         self.direction.y = int(keys[pygame.K_DOWN])  - int(keys[pygame.K_UP])
@@ -31,7 +31,7 @@ class Player(pygame.sprite.Sprite):
         
         recent_keys = pygame.key.get_just_pressed()
         if recent_keys[pygame.K_SPACE] and self.can_shoot:
-            print("Fire laser")
+            Laser(laser_sur, self.rect.midtop, all_sprites)
             self.can_shoot = False
             self.laser_shoot_time = pygame.time.get_ticks()
             
@@ -41,7 +41,18 @@ class Star(pygame.sprite.Sprite):
         super().__init__(groups)
         self.image = surf 
         self.rect = self.image.get_frect(center = (randint(0, window_width), randint(0, window_height)))
-        
+
+class Laser(pygame.sprite.Sprite):
+    def __init__(self, surf, pos, groups):
+        super().__init__(groups)
+        self.image = surf
+        self.rect = self.image.get_frect(midbottom = pos)
+    
+    def update(self, dt):
+        self.rect.centery -= 400 * dt
+        if self.rect.bottom < 0:
+            self.kill()
+
 # General setup
 pygame.init()
 window_width, window_height = 1263, 551
@@ -65,8 +76,7 @@ player = Player(all_sprites)
 meteor_surface = pygame.image.load(join("spaceshooter", "images", "meteor.png")).convert_alpha()
 meteor_rect = meteor_surface.get_frect(center = (window_width / 2, window_height / 2))
 
-laser_surface = pygame.image.load(join("spaceshooter", "images", "laser.png")).convert_alpha()
-laser_rect = laser_surface.get_frect(bottomleft = (20, window_height - 20))
+laser_sur = pygame.image.load(join("spaceshooter", "images", "laser.png")).convert_alpha()
 
 # custom events _> meteor events
 meteor_event = pygame.event.custom_type()
@@ -82,7 +92,7 @@ while running:
             print("create meteor")
 
     # update
-    all_sprites.update()
+    all_sprites.update(dt)
 
     # draw the game
     display_surface.fill("black")
@@ -90,3 +100,7 @@ while running:
     pygame.display.update()
     
 pygame.quit()
+ # 2:28:12
+ # Exercise
+ # Create a meteor on every meteor event
+ # Destory the meteor sprite after 2 seconds
