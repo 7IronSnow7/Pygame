@@ -104,3 +104,4 @@ pygame.quit()
  # Exercise
  # Create a meteor on every meteor event
  # Destory the meteor sprite after 2 seconds
+ # Complete exercise to move on
