@@ -135,3 +135,4 @@ while running:
     
 pygame.quit()
 # Time 3:02. 00
+# Adding new font to the game
