@@ -14,6 +14,9 @@ class Player(pygame.sprite.Sprite):
         self.can_shoot = True
         self.laser_shoot_time = 0
         self.cooldown_duration = 400
+        
+        # mask
+        self.mask = pygame.mask.from_surface(self.image)
     
     def laser_timer(self):
         if not self.can_shoot:
@@ -72,7 +75,7 @@ class Meteor(pygame.sprite.Sprite):
 def collisions():
     global running
     
-    collision_sprites = pygame.sprite.spritecollide(player, meteor_sprites, True)
+    collision_sprites = pygame.sprite.spritecollide(player, meteor_sprites, True, pygame.sprite.collide_mask)
     if collision_sprites:
         running = False
         
@@ -86,7 +89,7 @@ def display_score():
     text_surf = font.render(str(current_time), True, (240, 240, 240))
     text_rect = text_surf.get_frect(midbottom =  (window_width / 2, window_height - 50))
     display_surface.blit(text_surf, text_rect)
-    pygame.draw.rect(display_surface, "red", text_rect,10, 10)
+    pygame.draw.rect(display_surface, (240, 240, 240), text_rect.inflate(20, 10).move(0, -8), 5, 10)
     
 # General setup
 pygame.init()
@@ -142,5 +145,4 @@ while running:
     pygame.display.update()
     
 pygame.quit()
-# Time 3:02. 00
-# Adding new font to the game
+# Time 3:20. 00
