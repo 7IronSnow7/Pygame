@@ -37,8 +37,10 @@ class Player(pygame.sprite.Sprite):
             Laser(laser_sur, self.rect.midtop, (all_sprites, laser_sprites))
             self.can_shoot = False
             self.laser_shoot_time = pygame.time.get_ticks()
+            laser_sound.play()
             
         self.laser_timer()
+        
         
 class Star(pygame.sprite.Sprite):
     def __init__(self, groups, surf):
@@ -60,18 +62,39 @@ class Laser(pygame.sprite.Sprite):
 class Meteor(pygame.sprite.Sprite):
     def __init__(self, surf, pos, groups):
         super().__init__(groups)
+        self.original_surf = surf
         self.image = surf
         self.rect = self.image.get_frect(center = pos)
         self.start_time = pygame.time.get_ticks()
         self.lifetime = 3000
         self.direction = pygame.Vector2(uniform(-0.5, 0.5), 1)
         self.speed = randint(400, 500)
+        self.rotation_speed = randint(40, 80)
+        self.rotation = 0
         
     def update(self, dt):
-        self.rect.center += self.direction * self.speed * dt
+        self.rect.center += self.direction * self.speed * dt 
         if pygame.time.get_ticks() - self.start_time >= self.lifetime:
             self.kill()
-            
+        self.rotation += self.rotation_speed * dt
+        self.image = pygame.transform.rotozoom(self.original_surf, self.rotation, 1)
+        self.recr = self.image.get_frect(center = self.rect.center)
+        
+class AnimatedExplosion(pygame.sprite.Sprite):
+    def __init__(self, frames, pos, groups):
+        super().__init__(groups)
+        self.frames = frames
+        self.frame_index = 0
+        self.image = self.frames[self.frame_index]
+        self.rect = self.image.get_frect(center = pos)
+        
+    def update(self, dt):
+        self.frame_index += 20 * dt
+        if self.frame_index < len(self.frames):
+            self.image = self.frames[int(self.frame_index)]
+        else:
+            self.kill()
+                  
 def collisions():
     global running
     
@@ -83,6 +106,8 @@ def collisions():
         collided_sprites = pygame.sprite.spritecollide(laser, meteor_sprites, True)
         if collided_sprites:
             laser.kill()
+            AnimatedExplosion(explosion_frames, laser.rect.midtop, all_sprites)
+            explosion_sound.play()
             
 def display_score():
     current_time = pygame.time.get_ticks()
@@ -105,7 +130,16 @@ star_surf = pygame.image.load(join("spaceshooter", "images", "star.png")).conver
 meteor_surface = pygame.image.load(join("spaceshooter", "images", "meteor.png")).convert_alpha()
 laser_sur = pygame.image.load(join("spaceshooter", "images", "laser.png")).convert_alpha()
 font = pygame.font.Font(join("spaceshooter", "images", "Oxanium-Bold.ttf"), 40)
-text_surf = font.render("text", True, (240, 240, 240))
+explosion_frames = [pygame.image.load(join("spaceshooter", "images", "explosion", f"{i}.png")).convert_alpha() for i in range(21)]
+# text_surf = font.render("text", True, (240, 240, 240))
+
+laser_sound = pygame.mixer.Sound(join("spaceshooter", "audio", "laser.wav"))
+laser_sound.set_volume(0.5)
+explosion_sound = pygame.mixer.Sound(join("spaceshooter", "audio", "explosion.wav"))
+# damage_sound = pygame.mixer.Sound(join("spaceshooter", "audio", "damage.ogg"))
+game_music = pygame.mixer.Sound(join("spaceshooter", "audio", "game_music.wav"))
+game_music.set_volume(0.2)
+game_music.play(loops = -1)
 
 # sprites
 all_sprites = pygame.sprite.Group()
@@ -145,4 +179,4 @@ while running:
     pygame.display.update()
     
 pygame.quit()
-# Time 3:20. 00
+# Time 3:41. 00
