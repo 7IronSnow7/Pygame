@@ -1,12 +1,8 @@
 import pygame
 from constants import *
 
-pygame.init()
-
 def main():
-    print("Starting asteroids!")
-    print("Screen width:", SCREEN_WIDTH)
-    print("Screen height:", SCREEN_HEIGHT)
+    pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     running = True
     
@@ -26,3 +22,4 @@ pygame.quit()
 if __name__ == "__main__":
     main()
     
+# This comment is a test

@@ -1,4 +1,4 @@
-#!/home/divan/workspace/asteroids/venv/bin/python3
+#!/home/divan/workspace/pygame/asteroids/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
