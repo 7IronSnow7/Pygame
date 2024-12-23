@@ -26,4 +26,4 @@ pygame.quit()
 if __name__ == "__main__":
     main()
     
-# Need to add specific features, more features will be added.
+# Need to add specific features, more features will be added. Another feature will be added, I swear.
