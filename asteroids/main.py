@@ -1,6 +1,24 @@
 import pygame
 from constants import *
 
+class CircleShape(pygame.sprite.Sprite):
+    def __init__(self, x, y, radius):
+        # Apparently this will be used later
+        if hasattr(self, "containers"):
+            super().__init__(self.containers)
+        else:
+            super().__init__()
+            
+        self.position = pygame.Vector(x, y)
+        self.velocitiy = pygame.Vector(0, 0)
+        self.radius = radius
+    
+    def draw(self, screen):
+        pass
+    
+    def update(self, dt):
+        pass
+            
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
