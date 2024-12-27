@@ -6,10 +6,7 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
-    dt = 0
-    x = SCREEN_WIDTH / 2
-    y = SCREEN_HEIGHT / 2
-    player = Player(x, y)
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     # player_velocity_x = 200
     
     running = True
@@ -18,6 +15,12 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+                
+        # limit the framerate to 60 fps
+        dt = clock.tick(60) / 1000
+                
+        # update player state
+        player.update(dt)
                 
         # update player position
         # x += player_velocity_x * dt
@@ -28,8 +31,7 @@ def main():
         player.draw(screen)
         pygame.display.flip()
         
-        # limit the framerate to 60 fps
-        dt = clock.tick(60) / 1000
+       
         
 pygame.quit()
     
