@@ -41,3 +41,4 @@ class Player(CircleShape):
         
         # add some movement here
         # Need to complete the asteroids
+        # Add movement for asteroids
