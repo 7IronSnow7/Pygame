@@ -40,3 +40,4 @@ class Player(CircleShape):
         self.position += forward * PLAYER_SPEED * dt
         
         # add some movement here
+        # Need to complete the asteroids
