@@ -58,6 +58,11 @@ class PongGame(arcade.Window):
         self.player_paddle.center_x = 50
         self.player_paddle.center_y = WINDOW_HEIGHT // 2
         
+        # Create AI opponent
+        self.opponent_paddle = arcade.SpriteSolidColor(10, 100, arcade.color.RED)
+        self.opponent_paddle.center_x = WINDOW_WIDTH - 50
+        self.opponent_paddle.center_y = WINDOW_HEIGHT // 2
+        
         # Add ball
         self.ball = arcade.SpriteCircle(BALL_SIZE, arcade.color.WHITE)
         self.ball.center_x = WINDOW_WIDTH // 2
@@ -67,6 +72,7 @@ class PongGame(arcade.Window):
         
         # Add sprites to the list
         self.sprite_list.append(self.player_paddle)
+        self.sprite_list.append(self.opponent_paddle)
         self.sprite_list.append(self.ball)
             
     def on_draw(self):
@@ -84,15 +90,27 @@ class PongGame(arcade.Window):
         if self.player_paddle.bottom < 0:
             self.player_paddle.bottom = 0
             
-            # Ball bouncing off top and bottom
+        # Ball bouncing off top and bottom
         if self.ball.top > WINDOW_HEIGHT or self.ball.bottom < 0:
             self.ball.change_y = -self.ball.change_y
             
-           # Ball bouncing off paddle
+        # Ball bouncing off paddle
         if arcade.check_for_collision(self.ball, self.player_paddle):
             self.ball.change_x = -self.ball.change_x
+            
+        # AI movement (Make opponent paddle follow the ball)
+        if self.opponent_paddle.center_y < self.ball.center_y:
+            self.opponent_paddle.center_y += PADDLE_SPEED
+        elif self.opponent_paddle.center_y > self.ball.center_y:
+            self.opponent_paddle.center_y -= PADDLE_SPEED
+            
+        # Keep AI paddle in bounds
+        if self.opponent_paddle.top > WINDOW_HEIGHT:
+            self.opponent_paddle.top = WINDOW_HEIGHT
+        if self.opponent_paddle.bottom < 0:
+            self.opponent_paddle.bottom = 0
         
-    # Reset ball if it goes off screen
+        # Reset ball if it goes off screen
         if self.ball.left > WINDOW_WIDTH or self.ball.right < 0:
             self.ball.center_x = WINDOW_WIDTH // 2
             self.ball.center_y = WINDOW_HEIGHT // 2
