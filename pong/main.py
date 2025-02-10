@@ -38,3 +38,40 @@
 #     # add more updates
 
 # Using this as a testing ground real quick ADHD I feel is the issue here
+
+def main():
+    months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ]
+    
+    date = input("Date: ")
+    
+    print(date)
+    
+    # Let's split the date
+    split_str = date.split(",")
+    print("Split date, well hopefully")
+    print(split_str)
+    
+    split_split = split_str[0].split()
+    print("This should be the split split here")
+    print(split_split)
+    
+    if split_split[0] in months:
+        split_split
+        
+    
+    
+main()
+#
