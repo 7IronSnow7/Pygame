@@ -54,7 +54,9 @@ def main():
         "November",
         "December"
     ]
-    
+    month = ""
+    day = 0
+    year = 0
     date = input("Date: ")
     
     print(date)
@@ -62,14 +64,22 @@ def main():
     # Let's split the date
     split_str = date.split(",")
     print("Split date, well hopefully")
-    print(split_str)
+    print(f"This should be the year {split_str[0]}")
     
     split_split = split_str[0].split()
     print("This should be the split split here")
     print(split_split)
+
     
     if split_split[0] in months:
-        split_split
+        print("It is")
+        month = split_split[0]
+        
+        if int(split_split[1]) > 0 and int(split_split[1]) <= 12: # Day
+            print(f"It is {split_split[1]}")
+            day = split_split[1]
+        
+    
         
     
     
