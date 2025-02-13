@@ -32,8 +32,9 @@ class Ball(pygame.sprite.Sprite):
         super().__init__(groups)
         
         # image
-        self.image = pygame.Surface(SIZE['ball'])
-        self.image.fill(COLORS['ball'])
+        self.image = pygame.Surface(SIZE['ball'], pygame.SRCALPHA)
+        pygame.draw.circle(self.image, COLORS['ball'],(SIZE['ball'][0] / 2, SIZE['ball'][1] / 2), SIZE['ball'][0] / 2)
+        # self.image.fill(COLORS['ball'])
         
         # rect & movement
         self.rect = self.image.get_frect(center = (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2))
