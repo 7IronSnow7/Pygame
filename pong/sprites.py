@@ -51,8 +51,8 @@ class Ball(pygame.sprite.Sprite):
             self.rect.bottom = WINDOW_HEIGHT
             self.direction.y *= -1
             
-        if self.rect.bottom >= WINDOW_WIDTH:
-            self.rect.bottom = WINDOW_WIDTH
+        if self.rect.right >= WINDOW_WIDTH:
+            self.rect.right = WINDOW_WIDTH
             self.direction.x *= -1
             
         if self.rect.left <= 0:

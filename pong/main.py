@@ -6,7 +6,7 @@ class Game:
         pygame.init()
         self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption("Pong")
-        self.clock = pygame.time.Clock()
+        self.clock = pygame.time.Clock() 
         self.running = True
         
         # sprites
