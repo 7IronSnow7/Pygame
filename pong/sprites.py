@@ -13,7 +13,6 @@ class Paddle(pygame.sprite.Sprite):
         self.rect = self.image.get_frect(center = POS['player'])
         self.old_rect = self.rect.copy()
         self.direction = 0
-        self.speed = SPEED['player']
         
     def move(self, dt):
         self.rect.centery += self.direction * self.speed * dt
@@ -22,20 +21,27 @@ class Paddle(pygame.sprite.Sprite):
     
     def update(self, dt):
         self.old_rect = self.rect.copy()
-        self.move(dt)
         self.get_direction()
-    
+        self.move(dt)
+
 class Player(Paddle):
     def __init__(self, groups):
         super().__init__(groups)
         self.speed = SPEED['player']
-        
     
     def get_direction(self):
         keys = pygame.key.get_pressed()
         self.direction = int(keys[pygame.K_DOWN]) - int(keys[pygame.K_UP])
         
+class Opponent(Paddle):
+    def __init__(self, groups, ball):
+        super().__init__(groups)
+        self.speed = SPEED['opponent']
+        self.rect.center = POS['opponent']
+        self.ball = ball
         
+    def get_direction(self):
+        self.direction = 1 if self.ball.rect.centery > self.rect.centery else -1
 class Ball(pygame.sprite.Sprite):
     def __init__(self, groups, paddle_sprites):
         super().__init__(groups)
