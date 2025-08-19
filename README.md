@@ -23,7 +23,7 @@ This repository is dedicated to game development using **Pygame**, a cross-platf
 ## 🚀 **Projects**
 
 ### 🌌 **Space Shooter**  
-A fast-paced arcade shooter that challenges your reflexes and strategy.
+A fast-paced arcade shooter that challenges your reflexes and strategy!
 
 #### **Features**:
 - **Dynamic Gameplay**: Engage in thrilling combat with enemy waves and power-ups.  
