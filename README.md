@@ -8,7 +8,7 @@ Welcome to my **Pygame Repository**, a collection of interactive and immersive g
 - **[About](#about)**  
 - **[Projects](#projects)**  
    - **[Space Shooter](#space-shooter)**
-   - **[Chess]** Coming soon!
+   - **[Chess]** Coming soon!!
 - **[Technologies Used](#technologies-used)**  
 - **[How to Play](#how-to-play)**  
 - **[Contributing](#contributing)**  
