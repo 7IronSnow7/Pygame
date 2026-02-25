@@ -1,6 +1,6 @@
 # 🕹️ **Pygame Projects Repository**
 
-Welcome to my **Pygame Repos**, a collection of interactive and immersive games crafted using the power of Python and the Pygame library. This repository is a growing hub of creative projects, demonstrating the art of game development with clean code, engaging visuals, and intensive gameplay.
+Welcome to my **Pygame Repos**, a collection of interactive and immersive games crafted using the power of Python and the Pygame library. This repository is a growing hub of creative projects, demonstrating the art of game development with clean code, engaging visuals, and immersive gameplay.
 
 ---
 
