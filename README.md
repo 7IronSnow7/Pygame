@@ -17,7 +17,7 @@ Welcome to my **Pygame Repos**, a collection of interactive and immersive games 
 ---
 
 ## 📖 **About**  
-This repository is dedicated to game development using **Pygame**, a cross-platform set of Python modules designed for writing video games. Whether you're a beginner curious about coding or an experienced developer looking to explore interactive entertainment, these projects showcase the versatility of Pygame for creating stunning 2D games.
+This repository is dedicated to game development using **Pygame**, a cross-platform set of Python modules designed for writing video games. Whether you're a beginner curious about coding or an experienced developer looking to explore interactive entertainment, these projects showcase the versatility of Pygame for developing stunning 2D games.
 
 ---
 
